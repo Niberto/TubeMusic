@@ -18,7 +18,7 @@ export class HomePage {
   download() {
   
   const url = 'https://www.youtubeinmp3.com/fetch/?video=';
-  this.fileTransfer.download(url + this.video, this.file.dataDirectory).then((entry) => {
+  this.fileTransfer.download(url + this.video, this.file.externalDataDirectory).then((entry) => {
     console.log(entry)
     let toast = this.toastCtrl.create({
       message: 'Musica baixada',
