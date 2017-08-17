@@ -19,14 +19,14 @@ export class HomePage {
   
   const url = 'https://www.youtubeinmp3.com/fetch/?video=';
   this.fileTransfer.download(url + this.video, this.file.dataDirectory).then((entry) => {
-     this.a = entry.json();
+    console.log(entry)
     let toast = this.toastCtrl.create({
       message: 'Musica baixada',
       duration: 3000
     });
     toast.present();
   }, (error) => {
-    this.a = error.json();
+        console.log(error)
     let toast = this.toastCtrl.create({
       message: 'erro ao baixar musica',
       duration: 3000
