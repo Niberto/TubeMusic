@@ -10,6 +10,7 @@ import { File } from '@ionic-native/file';
 })
 export class HomePage {
   video: any;
+  a;
   fileTransfer: FileTransferObject = this.transfer.create(); 
   constructor(public navCtrl: NavController, private transfer: FileTransfer, private file: File, public toastCtrl: ToastController) {
   }
@@ -18,12 +19,14 @@ export class HomePage {
   
   const url = 'https://www.youtubeinmp3.com/fetch/?video=';
   this.fileTransfer.download(url + this.video, this.file.dataDirectory).then((entry) => {
+     this.a = entry.json();
     let toast = this.toastCtrl.create({
       message: 'Musica baixada',
       duration: 3000
     });
     toast.present();
   }, (error) => {
+    this.a = error.json();
     let toast = this.toastCtrl.create({
       message: 'erro ao baixar musica',
       duration: 3000
