@@ -1,14 +1,35 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { ToastController } from 'ionic-angular';
+import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController) {
-
+  video: any;
+  fileTransfer: FileTransferObject = this.transfer.create(); 
+  constructor(public navCtrl: NavController, private transfer: FileTransfer, private file: File, public toastCtrl: ToastController) {
   }
+
+  download() {
+  
+  const url = 'https://www.youtubeinmp3.com/fetch/?video=';
+  this.fileTransfer.download(url + this.video, this.file.dataDirectory).then((entry) => {
+    let toast = this.toastCtrl.create({
+      message: 'Musica baixada',
+      duration: 3000
+    });
+    toast.present();
+  }, (error) => {
+    let toast = this.toastCtrl.create({
+      message: 'erro ao baixar musica',
+      duration: 3000
+    });
+    toast.present();
+  });
+}
 
 }
